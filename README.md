@@ -1,4 +1,14 @@
-# Hacker's Stories by 0xKimoz
+# HackerStories - Enhanced Version
+
+> **Disclosure:** This is a forked and modified version of the original [HackerStories](https://github.com/karimtariqx/HackerStories) repository. The content has been made more challenging to provide a higher level of difficulty for learning and practice purposes. Additionally, several design and usability issues have been addressed for an improved user experience. Original credit goes to [karimtariqx](https://github.com/karimtariqx).
+
+**Modifications include:**
+- Increased difficulty and complexity in challenges.
+- Design enhancements for better readability and navigation.
+- Improved usability to facilitate learning.
+
+---
+
 
 ## Description
 
