@@ -3,25 +3,25 @@ include("config/db_connect");
 session_start();
 
 $search = isset($_GET['search']) ? mysqli_real_escape_string($conn, $_GET['search']) : "";
+$search = str_replace("script", "", $search);
 
-// Write a query to search for stories by title
+
 $sql = "SELECT title, content, id FROM stories WHERE title LIKE '%$search%' ORDER BY created_at";
 
-// Make the query and get the result
 $result = mysqli_query($conn, $sql);
-
-// Fetch the resulting rows as an array
 $stories = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 mysqli_free_result($result);
-
-// Close the connection
 mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-<?php include('templates/header.php') ?>
+<head>
+    <title>Search</title>
+    <?php include('templates/header.php') ?>
+</head>
+<body>
 <div class="row">
     <form action="search.php" method="GET">
         <div class="input-field col s12">
@@ -32,7 +32,7 @@ mysqli_close($conn);
 </div>
 <h4 class="center grey-text">
     <?php if (!empty($search)): ?>
-        Search Results for "<?php echo $search; ?>"
+        Search Results for "<?php echo htmlspecialchars($search); ?>"
     <?php else: ?>
         Please enter a search term.
     <?php endif; ?>
@@ -44,7 +44,7 @@ mysqli_close($conn);
             <?php foreach ($stories as $story): ?>
                 <div class="col s6 md3">
                     <div class="card z-depth-0">
-                        <img src="img\book-4986.png" class="story" alt="">
+                        <img src="img/book-4986.png" class="story" alt="">
                         <div class="card-content center">
                             <h6><?php echo htmlspecialchars($story['title']) ?></h6>
                             <ul>
@@ -65,11 +65,13 @@ mysqli_close($conn);
     </div>
 </div>
 
-<?php include('templates/footer.php') ?>
-</body>
 <script>
-    // Store the search term in a JavaScript variable
-    var searchTerm = "<?php echo $search; ?>";
-    
+
+    var searchTerm = "<?php echo htmlspecialchars($search); ?>";
+    // Prevent the user from typing '<' or '>' in the search input
+    document.getElementById('search').addEventListener('input', function (e) {
+        this.value = this.value.replace(/[<>]/g, '');
+    });
 </script>
+</body>
 </html>

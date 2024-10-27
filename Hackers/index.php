@@ -32,6 +32,7 @@ function basicSanitization($input) {
 
 ?>
 <?php
+
 session_start();
 
 if (isset($_GET['page'])) {
@@ -56,16 +57,37 @@ if (!isset($_SESSION["username"]))
 ?>
 <!DOCTYPE html>
 <html lang="en">
+<title>Home</title>
 
 <?php include( 'templates/header.php') ?> 
 
+<style>
+.btn_search{
+    background-color:#26a69a;
+    color: #fff;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    margin-left: 150px;
+    cursor: pointer;
+}
+.info{
+
+    padding: 50px;
+ 
+}
+.center-btn {
+    display: flex;
+    justify-content: center;
+}
+</style>
 <h2 class="center  " style="color:#333;" >Welcome <?php echo $_SESSION['username']; ?></h4>
 <div class="container">
     <div class="row">
         <form action="search.php" method="GET">
             <div class="input-field col s12">
                 <input type="text" name="search" id="search" placeholder="Search by Title">
-                <button class="btn waves-effect waves-light" type="submit">Search</button>
+                <button class="btn_search" type="submit">Search</button>
             </div>
         </form>
     </div>
@@ -94,8 +116,8 @@ if (!isset($_SESSION["username"]))
                 <?php endforeach; ?>
         </ul>
         </div>
-        <div class="card-action right-align">
-        <button class="btn waves-effect waves-light"> <a  href="details.php?id=<?php echo $story['id']  ?>" class="" style="color: #fff;">MORE INFO</a></button>
+        <div class="card-action center-btn">
+        <button class="btn waves-effect waves-ligt"> <a href="details.php?id=<?php echo $story['id'] ?>" class="info" style="color: #fff;">&nbsp;MORE INFO </a></button>
         </div>
     </div>
 </div>
@@ -105,14 +127,5 @@ if (!isset($_SESSION["username"]))
 
 </div>
 
-<?php include( 'templates/footer.php') ?>
-
-
-
-
-
-
-
-    
 </body>
 </html>

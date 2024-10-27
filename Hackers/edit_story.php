@@ -149,9 +149,10 @@ if (isset($_POST["update"])) {
 
 </style>
 <body>
-    <?php include('templates/header.php');?>
 
+    <br><br><br>
     <div class="container">
+        
         <div class="edit-form">
             <h2>Edit Story</h2>
             <form action="edit_story.php?id=<?php echo $story_id; ?>" method="POST">
@@ -172,6 +173,5 @@ if (isset($_POST["update"])) {
         </div>
     </div>
 
-    <?php include('templates/footer.php');?>
 </body>
 </html>

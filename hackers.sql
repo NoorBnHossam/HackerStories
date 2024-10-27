@@ -64,7 +64,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','thisistheadminbitches',''),(2,'0xkimoz','ICreatedThisShitYouCantHack17','');
+INSERT INTO `users` VALUES (1,'admin','thisistheadminbitches','Hackers\profile_pics\hacker.png'),(2,'0xkimoz','ICreatedThisShitYouCantHack17','Hackers\profile_pics\hacker.png');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

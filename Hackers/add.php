@@ -97,10 +97,24 @@ $content = mysqli_real_escape_string($conn, $_POST['content']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
+<style>
+body {
+  background-color: #f0f0f0; 
+}
+.container_ {
+  background-color: #ffffff; 
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px; 
+  margin: 0 auto; 
+}
 
-<?php include( 'templates/header.php') ?> 
+    </style>
 
-<section class="container grey-text">
+<?php include('templates/backtohome.php') ?>  
+
+<section class="container_ grey-text">
     <h4 class="center">Add a story</h4>
     <form class="white" action="add.php" method="POST">
         <label for="">Your username:</label>
@@ -116,15 +130,18 @@ $content = mysqli_real_escape_string($conn, $_POST['content']);
         <div class="red-text"><?php echo $errors['emptyI']; ?></div>
         <div class="red-text"><?php echo $errors['content']; ?></div>
         <div class="center">
+        <br>
             <input type="submit" value="submit" name="submit" class="btn waves-effect waves-light">
         </div>
     </form>
     <div class="center" style="margin-top: 20px;">
+      <strong> ------------- or -------------</strong>
+      <br>
+      <br>
         <a href="idea.php" class="btn waves-effect waves-light">Get idea from external website</a>
     </div>
 </section>
 
-<?php include( 'templates/footer.php') ?>
 
 
     

@@ -69,113 +69,121 @@ if ($conn && $user) {
 
 <!DOCTYPE html>
 <html lang="en">
-<?php include('templates/header.php'); ?> 
+
 <head>
     <style>
-     
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    color: #333;
-}
 
-.container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
 
-/* Header styles */
-h4.center {
-    text-align: center;
-    color: #2c3e50;
-    margin-bottom: 30px;
-}
+            body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
 
-/* Profile picture styles */
-img {
-    display: block;
-    max-width: 150px;
-    height: auto;
-    border-radius: 75px;
-    margin: 20px auto;
-}
+        .container {
+            width: 50%;
+            margin: 20px auto; 
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-/* User details styles */
-.user-details {
-    background-color: #e7e7e7;
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 30px;
-}
+        .blank {
 
-.user-details strong {
-    color: #2c3e50;
-}
+            margin-top: 30px;
+            padding: 20px;
 
-/* User stories styles */
-.user-stories {
-    margin-bottom: 30px;
-}
+        }
 
-.user-stories h5 {
-    color: #27ae60;
-    margin-bottom: 15px;
-}
+        .no-stories{
+            margin-top: 30px;
+            text-align: center;
 
-.user-stories ul {
-    list-style-type: none;
-    padding: 0;
-}
+        }
+        /* Profile picture styles */
+        img {
+            display: block;
+            max-width: 150px;
+            height: auto;
+            border-radius: 75px;
+            margin: 20px auto;
+        }
 
-.user-stories li {
-    background-color: #f9f9f9;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+        /* User details styles */
+        .user-details {
+            background-color: #e7e7e7;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
 
-.user-stories button {
-    margin-right: 10px;
-}
+        .user-details strong {
+            color: #2c3e50;
+        }
 
-/* Logout button styles */
-.logout-container {
-    text-align: center;
-    padding: 20px;
-}
+        /* User stories styles */
+        .user-stories {
+            margin-bottom: 30px;
+        }
 
-.logout-container a button {
-    background-color: #c0392b;
-    color: #fff;
-}
+        .user-stories h5 {
+            color: #27ae60;
+            margin-bottom: 15px;
+        }
 
-/* Button hover effect */
-button:hover {
-    opacity: 0.8;
-    cursor: pointer;
-}
+        .user-stories ul {
+            list-style-type: none;
+            padding: 0;
+        }
 
-/* Responsive design */
-@media (max-width: 768px) {
-    .container {
-        width: 95%;
-    }
+        .user-stories li {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
-    .user-details, .user-stories li {
-        text-align: center;
-    }
-}
+        .user-stories button {
+            margin-right: 10px;
+        }
 
+        /* Logout button styles */
+        .logout-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .logout-container a button {
+            background-color: #c0392b;
+            color: #fff;
+        }
+
+        /* Button hover effect */
+        button:hover {
+            opacity: 0.8;
+            cursor: pointer;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+
+            .user-details, .user-stories li {
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
+<div class="blank"></div>
 <div class="container">
+    <?php include('templates/backtohome.php'); ?> 
+
     <?php if ($user): ?>
         <h4 class="center grey-text">Profile of <?php echo htmlspecialchars($user['username']); ?></h4>
         <?php if ($profilePicture): ?>
@@ -183,31 +191,31 @@ button:hover {
             <?php $imagePath = 'profile_pics/' . $profilePicture; ?>
             <img src="<?php echo htmlspecialchars($imagePath); ?>" alt="Profile Picture">
         <?php else: ?>
-            <p>No profile picture available.</p>
+            <img src="https://picsbed.top/file/jAFr%2B%2FhrwFj09IZdYTzOHIllTK7CrF2F5QLxPguzQM0%3D4" alt="Default Profile Picture" style="display: block; margin: 20px auto; border-radius: 75px;">
         <?php endif; ?>
-        <div class="row  user-details" >
+        <!-- <div class="row user-details">
             <div class="col s12 m6">
                 <h5>User Details:</h5>
                 <p><strong>Username:</strong> <?php echo htmlspecialchars($user['username']); ?></p>
-                
             </div>
-        </div>
+        </div> -->
         <!-- Show Stories Section -->
-        <div class="user-stories" id="">
+        <div class="user-stories">
             <?php if (!empty($stories)): ?>
                 <h5>User's Stories:</h5>
                 <ul>
                 <?php foreach ($stories as $story): ?>
                     <li>
-                        <?php echo htmlspecialchars($story['title']); ?>
-                        <a href="delete_story.php?id=<?php echo $story['id']; ?>"><button class="btn waves-effect waves-light" style="background-color: #c0392b;">Delete</button></a>
-                        <a href="edit_story.php?id=<?php echo $story['id']; ?>"><button class="btn waves-effect waves-light">Edit</button></a>
-                        <a href="details.php?id=<?php echo $story['id']; ?>"><button class="btn waves-effect waves-light">View</button></a>
+                       
+                        <?php echo htmlspecialchars($story['title']); ?> <strong> &nbsp</strong> 
+                        <a href="delete_story.php?id=<?php echo $story['id']; ?>"><button class="btn waves-effect waves-light" style="background-color: #c0392b; border-radius: 25px;">Delete</button></a>
+                        <a href="edit_story.php?id=<?php echo $story['id']; ?>"><button class="btn waves-effect waves-light" style="border-radius: 25px;">Edit</button></a>
+                        <a href="details.php?id=<?php echo $story['id']; ?>"><button class="btn waves-effect waves-light" style="border-radius: 25px;">View</button></a>
                     </li>
                 <?php endforeach; ?>
                 </ul>
             <?php else: ?>
-                <p>No stories found for this user.</p>
+                <p class="no-stories">No stories found for this user.</p>
             <?php endif; ?>
         </div>
     <?php else: ?>
@@ -215,8 +223,8 @@ button:hover {
     <?php endif; ?>
 </div>
 <div class="logout-container">
-        <a href="logout.php"><button class="btn waves-effect waves-light">Logout</button></a>
-    </div>
-<?php include('templates/footer.php'); ?>
+    <a href="logout.php"><button class="btn waves-effect waves-light" style="border-radius: 15px;">Logout</button></a>
+</div>
+
 </body>
 </html>

@@ -8,14 +8,14 @@ $searchOutput = "";
 if (isset($_GET['id'])) {
     $id =  $_GET['id']; 
 
-    $sql = "SELECT username FROM users WHERE user_id = '$id'"; // Vulnerable SQL query with time delay
+    $sql = "SELECT username FROM users WHERE user_id = '$id'";
     $result = mysqli_query($conn, $sql);
 
     if ($result) {
         // Fetching the results and constructing the output string
         $resultsFound = false;
         while ($row = mysqli_fetch_assoc($result)) {
-            $searchOutput .= "User Name: " . htmlspecialchars($row['username']) . "<br>";
+            $searchOutput .= "<div style='text-align: center;'>User Name: " . htmlspecialchars($row['username']) . "</div><br>";
             $resultsFound = true;
         }
         if (!$resultsFound) {
@@ -28,6 +28,14 @@ if (isset($_GET['id'])) {
 }
 ?>
 <!DOCTYPE html>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<div>
+            <a href="index.php?page=en" class="brand-logo" style="color: #000; font-size: 2em;">
+                <i class="material-icons" style="color: #26a69a; font-size: 1.5em;">home</i>
+            </a>
+        </div>
+   
 <html>
 <head>
     <title>Search by ID</title>
@@ -72,14 +80,14 @@ if (isset($_GET['id'])) {
         }
 
         input[type="submit"] {
-            background-color: #007bff;
+            background-color: #26a69a;
             color: white;
             cursor: pointer;
             border: none;
         }
 
         input[type="submit"]:hover {
-            background-color: #0056b3;
+            background-color: #26a69a;
         }
 
         .search-result {
@@ -88,8 +96,10 @@ if (isset($_GET['id'])) {
     </style>
 </head>
 <body>
+    <br><br><br><br>
     <div class="container">
         <h2>Search by ID</h2>
+    
         <form action="userSearch.php" method="GET">
             <label for="id">Enter User ID:</label>
             <input type="text" id="id" name="id"><br>
